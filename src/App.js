@@ -3,6 +3,7 @@ import Landing from "../src/components/Landing";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { TeamContext } from "./TeamContext/TeamContext";
+import Scores from "./components/Scores";
 
 function App() {
   const [teamData, setTeamData] = useState(null);
@@ -32,6 +33,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Landing />} />
+            <Route exact path="scores" element={<Scores />} />
           </Routes>
         </BrowserRouter>
       </TeamContext.Provider>

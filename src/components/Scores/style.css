@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cons {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 246, 252, 0.52),
+      rgba(17, 19, 93, 0.73)
+    ),
+    url("../../footballs.jpg");
+    color: white;
+    background-size: cover;
+    margin: auto;
+}
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    gap: 1rem;
+}
+
+.scores {
+    display: flex;
+    gap: 1rem;
+    background: silver;
+    justify-self: center;
+    align-self: center;
+    padding: 1rem;
+    margin: 0 5rem;
+    opacity: 82%;
+    font-size: 40px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    font-weight: 900;
+}
+
+
+img {
+  width: 9rem;
+}
+
+#btn {
+  width: 7rem;
+  height: 3rem;
+  opacity: 90%;
+}
+
+.butons {
+  align-self: center;
+  justify-self: center;
+  margin: 10% 45%;
+}
+
+.teams {
+  max-width: 200px;
+}
+
+.team {
+  max-width: 400px;
+}

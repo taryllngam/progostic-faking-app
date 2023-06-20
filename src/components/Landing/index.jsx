@@ -1,12 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router";
 import { TeamContext } from "../../TeamContext/TeamContext";
 import "../Landing/style.css";
 
 export default function Landing() {
   const { teamData } = useContext(TeamContext);
   const [truth, settruth] = useState(true);
-  const [teams, setTeams] = useState({ home: "", away: "" });
+  const [teams, setTeams] = useState({
+    home: "",
+    away: "",
+    homeScore: 0,
+    awayScore: 0,
+  });
   const [scores, setScores] = useState({ home: 0, away: 0 });
+  // const [teamScores, setteamScores] = useState({ homeTeam:})
+  const params = useParams();
+  const navigate = useNavigate();
 
   const Countries = ({ countries }) => {
     return (
@@ -34,7 +43,6 @@ export default function Landing() {
             onChange={(e) => {
               e.preventDefault();
               setTeams((prev) => ({ ...prev, away: e.target.value }));
-              console.log(teams, "hello world");
             }}
           >
             <option selected disabled value>
@@ -87,7 +95,7 @@ export default function Landing() {
             </option>
             {clubs.map((club) => {
               return (
-                <option value={club.name}key={club.name}>
+                <option value={club.name} key={club.name}>
                   {club.name}
                 </option>
               );
@@ -96,6 +104,11 @@ export default function Landing() {
         </div>
       </div>
     );
+  };
+
+  const handleClick = () => {
+    localStorage.setItem("teamScores", JSON.stringify(teams));
+    navigate(`/scores`);
   };
 
   return (
@@ -131,7 +144,6 @@ export default function Landing() {
             <div className="display3">
               <h2>Home:</h2>
               <p>{teams.home}</p>
-              <img src={teams.home.url} alt="" />
             </div>
             <div>
               <input
@@ -139,7 +151,7 @@ export default function Landing() {
                 id="num"
                 placeholder="input score"
                 onChange={(e) => {
-                  setScores((prev) => ({ ...prev, away: e.target.value }));
+                  setTeams((prev) => ({ ...prev, homeScore: e.target.value }));
                 }}
               />
             </div>
@@ -156,13 +168,13 @@ export default function Landing() {
               id="num"
               placeholder="input score"
               onChange={(e) => {
-                setScores((prev) => ({ ...prev, away: e.target.value }));
+                setTeams((prev) => ({ ...prev, awayScore: e.target.value }));
               }}
             />
           </div>
         </div>
       </div>
-      <button>Submit</button>
+      <button id="btn" onClick={handleClick}>Submit</button>
     </div>
   );
 }
