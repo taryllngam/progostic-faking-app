@@ -9,7 +9,7 @@
   width: 100vw;
   background-image: linear-gradient(
       to bottom,
-      rgba(245, 246, 252, 0.52),
+      rgba(17, 19, 93, 0.73),
       rgba(17, 19, 93, 0.73)
     ),
     url("../../footballs.jpg");
@@ -39,7 +39,6 @@
     align-self: center;
     padding: 1rem;
     margin: 0 5rem;
-    opacity: 82%;
     font-size: 40px;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     font-weight: 900;
