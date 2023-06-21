@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Landing from "../Landing";
 import "../Scores/style.css";
 import  { createRef } from 'react'
-import { useScreenshot } from 'use-react-screenshot'
+import { createFileName, useScreenshot } from "use-react-screenshot";
 
 export default function Scores() {
   const { teamData } = useContext(TeamContext);
@@ -12,8 +12,21 @@ export default function Scores() {
   const [flag, setFlags] = useState();
 
   const ref = createRef(null)
-  const [image, takeScreenshot] = useScreenshot()
-  const getImage = () => takeScreenshot(ref.current)
+  const [image, takeScreenshot] = useScreenshot({
+    type: "image/jpeg",
+    quality: 1.0
+  })
+  
+
+
+  const download = (image,{ name = 'sampleimage', extension = 'jpg' } = {}) => {
+    const a = document.createElement('a');
+    a.href = image;
+    a.download = createFileName(extension, name);
+    a.click();
+  };
+
+  const downloadScreenshot = () => takeScreenshot(ref.current).then(download);
 
   // const teamFlag = teamData.filter((el)=>{
   //   el = teamScores.home
@@ -46,7 +59,7 @@ export default function Scores() {
   
 
   return (
-    <div className="cons">
+    <div className="cons" ref={ref}>
     <div className="container1">
       <div className="container2">
         <div className="team">
@@ -71,7 +84,7 @@ export default function Scores() {
       </div>
     </div>
     <div className="butons">
-          <button id="btn" onClick={getImage}>Capture</button>
+          <button id="btn" onClick={downloadScreenshot}>Capture</button>
         </div>
     </div>
   );
