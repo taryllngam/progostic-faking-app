@@ -1,6 +1,5 @@
 import { TeamContext } from "../../TeamContext/TeamContext";
 import React, { useContext, useEffect, useState } from "react";
-import Landing from "../Landing";
 import "../Scores/style.css";
 import  { createRef } from 'react'
 import { createFileName, useScreenshot } from "use-react-screenshot";
@@ -12,11 +11,11 @@ export default function Scores() {
   const [flag, setFlags] = useState();
 
   const ref = createRef(null)
-  const [image, takeScreenshot] = useScreenshot({
+  const [takeScreenshot, setTakeScreenshot] = useScreenshot({
     type: "image/jpeg",
     quality: 1.0
   })
-  
+  console.log(takeScreenshot)
 
 
   const download = (image,{ name = 'sampleimage', extension = 'jpg' } = {}) => {
@@ -25,8 +24,7 @@ export default function Scores() {
     a.download = createFileName(extension, name);
     a.click();
   };
-
-  const downloadScreenshot = () => takeScreenshot(ref.current).then(download);
+  const downloadScreenshot = () => setTakeScreenshot(ref.current).then(download);
 
   // const teamFlag = teamData.filter((el)=>{
   //   el = teamScores.home
@@ -43,7 +41,7 @@ export default function Scores() {
         countries.find((country) => country.country === teamScores.home);
       setTeamFlags(teamFlag);
     }
-  }, [teamData]);
+  }, [teamData,teamScores.home]);
   console.log({ teamFlags }, "teamFlag");
 
   useEffect(() => {
@@ -54,7 +52,7 @@ export default function Scores() {
         countries.find((country) => country.country === teamScores.away);
       setFlags(Flag);
     }
-  }, [teamData]);
+  }, [teamData, teamScores.away]);
 
   
 
@@ -65,7 +63,7 @@ export default function Scores() {
       <div className="container2">
         <div className="team">
           <div className="images">
-          <img src={teamFlags?.url || teamFlags?.flag} />
+          <img src={teamFlags?.url || teamFlags?.flag} alt="teamflags"/>
           </div>
           <div className="teams">
           <h1>{teamFlags?.name || teamFlags?.country}</h1>
@@ -76,7 +74,7 @@ export default function Scores() {
         </div>
         <div className="team">
           <div className="images">
-        <img src={flag?.url || flag?.flag} />
+        <img src={flag?.url || flag?.flag} alt="teamflags" />
         </div>
         <div className="teams">
           <h1>{teamScores.away}</h1>

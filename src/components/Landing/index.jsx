@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router";
+import React, { useState, useContext } from "react";
+import { useNavigate} from "react-router";
 import { TeamContext } from "../../TeamContext/TeamContext";
 import "../Landing/style.css";
 
@@ -12,9 +12,9 @@ export default function Landing() {
     homeScore: 0,
     awayScore: 0,
   });
-  const [scores, setScores] = useState({ home: 0, away: 0 });
+  // const [scores, setScores] = useState({ home: 0, away: 0 });
   // const [teamScores, setteamScores] = useState({ homeTeam:})
-  const params = useParams();
+  // const params = useParams();
   const navigate = useNavigate();
 
   const Countries = ({ countries }) => {
