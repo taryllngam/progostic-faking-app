@@ -59,8 +59,9 @@ export default function Scores() {
   
 
   return (
+    <>
     <div className="cons" ref={ref}>
-    <div className="container1">
+    <div className="container1" >
       <div className="container2">
         <div className="team">
           <div className="images">
@@ -87,5 +88,6 @@ export default function Scores() {
           <button id="btn" onClick={downloadScreenshot}>Capture</button>
         </div>
     </div>
+    </>
   );
 }
